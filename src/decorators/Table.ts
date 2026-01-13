@@ -1,7 +1,7 @@
-const TableRegistry = new Map<Function, string>();
+const TableRegistry = new Map<new ()=>any, string>();
 
 function Table(name: string) {
-  return function (constructor: Function) {
+  return function (constructor: new ()=>any) {
     TableRegistry.set(constructor, name);
   };
 }

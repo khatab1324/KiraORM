@@ -3,6 +3,7 @@ import type { Pool as PromisePool } from "mysql2/promise";
 import CreateSessionMysql from "./createSessionMysql.js";
 import { TableRegistry } from "./decorators/Table.js";
 import type { GenerateSchema } from "./type.js";
+// function Kira<T extends any[]>(params: string, models: T) {
 function Kira<T extends (new () => any)[]>(params: string, models: T) {
   if (typeof params[0] === "string") {
     if (params.startsWith("mysql://")) {
@@ -35,8 +36,6 @@ function Kira<T extends (new () => any)[]>(params: string, models: T) {
               find: () => container.find(entityClass),
             };
           },
-          configurable: true,
-          enumerable: true,
         });
       });
       return container as DatabaseContainerMysql & GenerateSchema<T>;
@@ -60,6 +59,10 @@ class DatabaseContainerMysql {
       return instance;
     });
   }
+  public async findById<T>(): Promise<T> {
+    return {} as T;
+  }
+
   public async executeQuery(query: string, values?: any[]) {
     try {
       const [rows, fields] = await this._dbInstance.execute(query, values);

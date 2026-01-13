@@ -1,0 +1,1 @@
+const PrimaryKeyRegistry = new Map<Function, string>();
