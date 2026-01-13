@@ -5,5 +5,4 @@ function Table(name: string) {
     TableRegistry.set(constructor, name);
   };
 }
-
 export { TableRegistry, Table };

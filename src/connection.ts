@@ -3,6 +3,7 @@ import type { Pool as PromisePool } from "mysql2/promise";
 import CreateSessionMysql from "./createSessionMysql.js";
 import { TableRegistry } from "./decorators/Table.js";
 import type { GenerateSchema } from "./type.js";
+import { PrimaryKeyRegistry } from "./decorators/PrimaryColumn.js";
 // function Kira<T extends any[]>(params: string, models: T) {
 function Kira<T extends (new () => any)[]>(params: string, models: T) {
   if (typeof params[0] === "string") {
@@ -34,6 +35,10 @@ function Kira<T extends (new () => any)[]>(params: string, models: T) {
           get() {
             return {
               find: () => container.find(entityClass),
+              findById: (id: string | number) =>
+                container.findById(id, entityClass) as InstanceType<
+                  typeof entityClass
+                >,
             };
           },
         });
@@ -59,14 +64,30 @@ class DatabaseContainerMysql {
       return instance;
     });
   }
-  public async findById<T>(): Promise<T> {
-    return {} as T;
+  public async findById<T>(id: string | number, ctor: new () => T): Promise<T> {
+    if (!PrimaryKeyRegistry.has(ctor)) {
+      throw new Error(`Primary key not defined for ${ctor.name}`);
+    }
+    const primaryKey = PrimaryKeyRegistry.get(ctor) as string;
+    console.log("primaryKey:", primaryKey);
+    
+    const classnameInTable = TableRegistry.get(ctor);
+    const [rows] = await this.executeQuery(
+      `SELECT * FROM ${classnameInTable} WHERE ${primaryKey} = ? LIMIT 1`,
+      [id]
+    );
+    if ((rows as any[]).length > 0) {
+      const instance = new ctor();
+      Object.assign(instance, (rows as any[])[0]);
+      return instance;
+    }
   }
 
   public async executeQuery(query: string, values?: any[]) {
     try {
+      console.log(values);
+
       const [rows, fields] = await this._dbInstance.execute(query, values);
-      await this._dbInstance.end();
       return [rows, fields];
     } catch (err) {
       console.error("Error executing query:", err);

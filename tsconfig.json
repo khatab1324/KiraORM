@@ -34,7 +34,7 @@
 
     // Recommended Options
     // "strict": true,
-    "experimentalDecorators": false,
+    "experimentalDecorators": true,
     "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
