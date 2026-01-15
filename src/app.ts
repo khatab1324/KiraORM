@@ -4,6 +4,7 @@ import {
   PrimaryKeyRegistry,
 } from "./decorators/PrimaryColumn.js";
 import { Table } from "./decorators/Table.js";
+
 @Table("User")
 class User {
   static readonly name = "User";
@@ -32,25 +33,7 @@ class Book {
   stock_quantity!: number;
   pages: number;
 }
-
 const db = Kira("mysql://root:112233@localhost/databaseOne", [User, Cat, Book]);
-
-// async function test() {
-//   if (!db) return;
-//   const [rows, fields] = await db.executeQuery("SELECT * FROM User");
-//   console.log("Rows:", rows);
-//   console.log("Fields:", fields);[number]
-//   db.close();
-// }
-// test();
-
-// await db.find<User>(() => new User());
-// const user = await db.user.find();
-// console.log(user.map((u) => u.Username));
-// const books = await db.book.find();
-// console.log(books.map((b) => b.book_id));
-// const book = await db.book.findById(3);
-// console.log(book);
 
 // // const book = await db.book.findById({book_id: 1});
 // console.log(books);
@@ -61,7 +44,30 @@ const db = Kira("mysql://root:112233@localhost/databaseOne", [User, Cat, Book]);
 // const users = await db.user.find();
 // console.log(users);
 
-const user = await db.user.findById(5);
+// const user = await db.user.findById(5);
+// console.log(user);
+// const cat = await db.cat.findById(2);
+// console.log(cat);
+
+const users = await db.user.find();
+const user = await db.user.findById(1);
+console.log(users);
 console.log(user);
-const cat = await db.cat.findById(2);
-console.log(cat);
+const userByName = await db.user.findWhere({ Username: "sami" });
+console.log(userByName);
+// const newUser = await db.user.insert({
+//   Id: "13",
+//   Username: "newuser",
+//   Age: 30,
+// });
+
+// console.log(newUser);
+// await db.user.deleteWhere({Username: "khattab"});
+const updateUser = await db.user.update(8, {
+  Id: "8",
+  Username: "khattab",
+  Age: 35,
+});
+console.log(updateUser);
+
+db.close();
