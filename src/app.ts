@@ -50,11 +50,29 @@ const db = Kira("mysql://root:112233@localhost/databaseOne", [User, Cat, Book]);
 // console.log(cat);
 
 const users = await db.user.find();
+
 const user = await db.user.findById(1);
+
+const userByName = await db.user.findWhere({ Username: "sami" });
+
+const newUser = await db.user.insert({
+  Id: "8",
+  Username: "khattab",
+  Age: 34,
+});
+
+const updateUser = await db.user.update(8, {
+  Id: "8",
+  Username: "khattab",
+  Age: 35,
+});
+
+await db.user.delete(8);
+await db.user.deleteWhere({ Username: "khattab" });
+
+console.log(userByName);
 console.log(users);
 console.log(user);
-const userByName = await db.user.findWhere({ Username: "sami" });
-console.log(userByName);
 // const newUser = await db.user.insert({
 //   Id: "13",
 //   Username: "newuser",
@@ -63,11 +81,9 @@ console.log(userByName);
 
 // console.log(newUser);
 // await db.user.deleteWhere({Username: "khattab"});
-const updateUser = await db.user.update(8, {
-  Id: "8",
-  Username: "khattab",
-  Age: 35,
-});
+
 console.log(updateUser);
 
 db.close();
+
+const user2 = await db.user.findById(3);
