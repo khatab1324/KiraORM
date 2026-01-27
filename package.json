@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "npx tsx src/kira_kit/cli/commands/kira_commands.ts generate"
+    "generate": "node --loader ts-node/esm src/kira_kit/cli/commands/kira_commands.ts generate"
   },
   "keywords": [],
   "author": "",
@@ -12,11 +12,13 @@
   "description": "",
   "devDependencies": {
     "@types/node": "^25.0.6",
+    "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "type": "module",
   "dependencies": {
-    "mysql2": "^3.16.0"
+    "mysql2": "^3.16.0",
+    "reflect-metadata": "^0.2.2"
   }
 }

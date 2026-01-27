@@ -1,0 +1,32 @@
+{
+ "id": "794c1f42-f8a2-49f8-9932-ef0ad4a95d41",
+ "dialect": "mysql",
+ "tables": [
+  {
+   "tableName": "User",
+   "columns": [
+    {
+     "columnName": "Id",
+     "type": "varchar(255)",
+     "nullable": false
+    },
+    {
+     "columnName": "Username",
+     "type": "varchar(255)",
+     "nullable": false
+    },
+    {
+     "columnName": "Age",
+     "type": "int",
+     "nullable": false
+    },
+    {
+     "columnName": "IsAdmin",
+     "type": "boolean",
+     "nullable": false
+    }
+   ],
+   "primaryKey": "Id"
+  }
+ ]
+}

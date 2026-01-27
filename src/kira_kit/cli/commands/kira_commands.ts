@@ -1,4 +1,5 @@
 import runGenerate from "../../generate.js";
+import "reflect-metadata";
 
 const argv = process.argv.slice(2);
 console.log(argv);
@@ -11,5 +12,4 @@ if (!cmd || cmd === "--help" || cmd === "-h") {
 }
 if (argv[0] === "generate") {
   if (argv[1]) await runGenerate(argv.slice(1));
-  
 }
