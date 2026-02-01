@@ -1,0 +1,1 @@
+ALTER TABLE `Users` ADD COLUMN `User_Id` int NOT NULL;

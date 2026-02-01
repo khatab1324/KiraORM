@@ -18,6 +18,7 @@ export default async function runGenerate(argv) {
     }
   }
 }
+
 function validateConfig(obj: Config) {
   if (typeof obj !== "object" || obj === null) {
     return false;

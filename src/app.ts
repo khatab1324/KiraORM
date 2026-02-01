@@ -1,4 +1,3 @@
-
 import Kira from "./connection.js";
 import {
   PrimaryColumn,
@@ -35,4 +34,8 @@ class Book {
   pages: number;
 }
 const db = Kira("mysql://root:112233@localhost/databaseOne", [User, Cat, Book]);
+// const users = await db.user.find();
+const user = await db.user.findWhere({ Username: "khattab" });
+console.log(user);
+
 db.close();

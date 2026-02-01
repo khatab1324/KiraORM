@@ -1,17 +1,18 @@
 import { Column } from "../decorators/Column.js";
 import { PrimaryColumn } from "../decorators/PrimaryColumn.js";
 import { Table } from "../decorators/Table.js";
-import "reflect-metadata";
 @Table("User")
 export class User {
-  static readonly name = "User";
+  static readonly name = "Users";
   @PrimaryColumn()
   @Column()
-  Id: string;
+  User_Id: number;
+  @Column()
+  Id: number;
   @Column()
   Username!: string;
   @Column()
-  Age!: number;
+  Age!: string;
   @Column()
-  IsAdmin:boolean
+  IsAdmin: boolean;
 }

@@ -1,0 +1,74 @@
+{
+  "id": "3caeb205-1d59-457a-8272-a8190436776f",
+  "prevId": "4d4b2ea7-c462-414d-ab9f-48775d3a005b",
+  "dialect": "mysql",
+  "tables": [
+    {
+      "tableName": "Books",
+      "columns": [
+        {
+          "columnName": "book_id",
+          "type": "int",
+          "nullable": false
+        },
+        {
+          "columnName": "title",
+          "type": "varchar(255)",
+          "nullable": false
+        },
+        {
+          "columnName": "author_fname",
+          "type": "varchar(255)",
+          "nullable": false
+        },
+        {
+          "columnName": "author_lname",
+          "type": "varchar(255)",
+          "nullable": false
+        },
+        {
+          "columnName": "released_year",
+          "type": "int",
+          "nullable": false
+        },
+        {
+          "columnName": "stock_quantity",
+          "type": "int",
+          "nullable": false
+        },
+        {
+          "columnName": "pages",
+          "type": "int",
+          "nullable": false
+        }
+      ],
+      "primaryKey": "book_id"
+    },
+    {
+      "tableName": "Users",
+      "columns": [
+        {
+          "columnName": "Id",
+          "type": "varchar(255)",
+          "nullable": false
+        },
+        {
+          "columnName": "Username",
+          "type": "varchar(255)",
+          "nullable": false
+        },
+        {
+          "columnName": "Age",
+          "type": "int",
+          "nullable": false
+        },
+        {
+          "columnName": "IsAdmin",
+          "type": "boolean",
+          "nullable": false
+        }
+      ],
+      "primaryKey": "Id"
+    }
+  ]
+}
