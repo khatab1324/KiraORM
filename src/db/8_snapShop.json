@@ -1,0 +1,79 @@
+{
+  "id": "6560f268-0680-4168-a97b-62ad9f0704f5",
+  "prevId": "5201cc19-aef6-488d-8311-2e94c39d1026",
+  "dialect": "mysql",
+  "tables": [
+    {
+      "tableName": "Books",
+      "columns": [
+        {
+          "columnName": "book_id",
+          "type": "varchar(255)",
+          "nullable": false
+        },
+        {
+          "columnName": "title",
+          "type": "varchar(255)",
+          "nullable": false
+        },
+        {
+          "columnName": "author_fname",
+          "type": "varchar(255)",
+          "nullable": false
+        },
+        {
+          "columnName": "author_lname",
+          "type": "varchar(255)",
+          "nullable": false
+        },
+        {
+          "columnName": "released_year",
+          "type": "int",
+          "nullable": false
+        },
+        {
+          "columnName": "stock_quantity",
+          "type": "int",
+          "nullable": false
+        },
+        {
+          "columnName": "pages",
+          "type": "int",
+          "nullable": false
+        }
+      ],
+      "primaryKey": "book_id"
+    },
+    {
+      "tableName": "User",
+      "columns": [
+        {
+          "columnName": "User_Id",
+          "type": "int",
+          "nullable": false
+        },
+        {
+          "columnName": "Id",
+          "type": "int",
+          "nullable": false
+        },
+        {
+          "columnName": "Username",
+          "type": "varchar(255)",
+          "nullable": false
+        },
+        {
+          "columnName": "Age",
+          "type": "varchar(255)",
+          "nullable": false
+        },
+        {
+          "columnName": "IsAdmin",
+          "type": "boolean",
+          "nullable": false
+        }
+      ],
+      "primaryKey": "User_Id"
+    }
+  ]
+}

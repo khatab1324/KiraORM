@@ -3,7 +3,7 @@ import { PrimaryColumn } from "../decorators/PrimaryColumn.js";
 import { Table } from "../decorators/Table.js";
 @Table("User")
 export class User {
-  static readonly name = "Users";
+  static readonly name = "User";
   @PrimaryColumn()
   @Column()
   User_Id: number;

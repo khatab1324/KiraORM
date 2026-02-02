@@ -1,5 +1,6 @@
 import runGenerate from "../../generate.js";
 import "reflect-metadata";
+import runMigrate from "../../migration.js";
 
 const argv = process.argv.slice(2);
 console.log(argv);
@@ -12,4 +13,6 @@ if (!cmd || cmd === "--help" || cmd === "-h") {
 }
 if (argv[0] === "generate") {
   if (argv[1]) await runGenerate(argv.slice(1));
+} else if (argv[0] === "migrate") {
+  await runMigrate();
 }
