@@ -3,7 +3,7 @@ import type { Config } from "./index.js";
 import loaderConfig from "./loader.js";
 import { validateConfig } from "./validateConfig.js";
 
-export default async function runGenerate(argv) {
+export default async function runGenerate() {
   
   const config = (await loaderConfig("kira.config.ts")) as Config;
   console.log(config);

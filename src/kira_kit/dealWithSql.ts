@@ -7,6 +7,7 @@ export async function generateMysqlSql(snapshot: Snapshot) {
   const statements: string[] = [];
   if (snapshot.prevId) {
     //TODO add the comapre logic
+    //TODO : inject the statements to functions that add to the one statements array
     const prevSnapShot = await findSnapShot(snapshot.prevId);
     if (prevSnapShot) {
       const diffs = compareTableNames(prevSnapShot.tables, snapshot.tables);
@@ -19,6 +20,13 @@ export async function generateMysqlSql(snapshot: Snapshot) {
         );
         if (columnDiffs.length !== 0) {
           statements.push(...columnDiffs);
+        }
+        const primaryKeyDiffs = await compirePrimeryKey(
+          prevSnapShot.tables,
+          snapshot.tables
+        );
+        if (primaryKeyDiffs.length !== 0) {
+          statements.push(...primaryKeyDiffs);
         }
       }
 
@@ -129,6 +137,68 @@ export function compareColumns(
       }
     }
   }
+  return statements;
+}
 
+// export async function compirePrimeryKey(
+//   oldTables: Snapshot["tables"],
+//   newTables: Snapshot["tables"]
+// ) {
+//   const statements: string[] = [];
+//   for (const newTable of newTables) {
+//     const oldTable = oldTables.find((t) => t.tableName === newTable.tableName);
+//     if (!oldTable) continue;
+
+//     if (oldTable.primaryKey === newTable.primaryKey) continue;
+//     const oldPkInNewCols = newTable.columns.find(
+//       (col) => col.columnName === oldTable.primaryKey
+//     );
+//     if (!oldPkInNewCols) {
+//       statements.push(
+//         `ALTER TABLE \`${newTable.tableName}\` DROP PRIMARY KEY;`,
+//         `ALTER TABLE \`${newTable.tableName}\` ADD PRIMARY KEY (\`${newTable.primaryKey}\`);`
+//       );
+//       continue;
+//     }
+//     if (oldTable.primaryKey !== newTable.primaryKey) {
+//       statements.push(
+//         `ALTER TABLE \`${newTable.tableName}\` DROP PRIMARY KEY, ADD PRIMARY KEY (\`${newTable.primaryKey}\`);`
+//       );
+//     }
+//   }
+//   return statements;
+// }
+
+export async function compirePrimeryKey(
+  oldTables: Snapshot["tables"],
+  newTables: Snapshot["tables"]
+) {
+  const statements: string[] = [];
+  for (const newTable of newTables) {
+    const oldTable = oldTables.find((t) => t.tableName === newTable.tableName);
+    if (!oldTable) continue;
+
+    const oldPk = oldTable.primaryKey;
+    const newPk = newTable.primaryKey;
+
+    if (oldPk === newPk) continue;
+    const oldPkColumnStillExists = newTable.columns.some(
+      (col) => col.columnName === oldPk
+    );
+
+    const actionParts: string[] = [];
+    if (oldPk && oldPkColumnStillExists) {
+      actionParts.push(`DROP PRIMARY KEY`);
+    }
+
+    if (newPk) {
+      actionParts.push(`ADD PRIMARY KEY (\`${newPk}\`)`);
+    }
+    if (actionParts.length > 0) {
+      statements.push(
+        `ALTER TABLE \`${newTable.tableName}\` ${actionParts.join(", ")};`
+      );
+    }
+  }
   return statements;
 }

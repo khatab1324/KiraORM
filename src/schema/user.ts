@@ -4,10 +4,8 @@ import { Table } from "../decorators/Table.js";
 @Table("User")
 export class User {
   static readonly name = "User";
+  @Column()
   @PrimaryColumn()
-  @Column()
-  User_Id: number;
-  @Column()
   Id: number;
   @Column()
   Username!: string;

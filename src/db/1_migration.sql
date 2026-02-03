@@ -1,5 +1,5 @@
 CREATE TABLE `Books` (
-    `book_id` int NOT NULL,
+    `book_id` varchar(255) NOT NULL,
     `title` varchar(255) NOT NULL,
     `author_fname` varchar(255) NOT NULL,
     `author_lname` varchar(255) NOT NULL,
@@ -10,9 +10,10 @@ CREATE TABLE `Books` (
 );
 
 CREATE TABLE `User` (
-    `Id` varchar(255) NOT NULL,
+    `User_Id` int NOT NULL,
+    `Id` int NOT NULL,
     `Username` varchar(255) NOT NULL,
-    `Age` int NOT NULL,
+    `Age` varchar(255) NOT NULL,
     `IsAdmin` boolean NOT NULL,
-    PRIMARY KEY (`Id`)
+    PRIMARY KEY (`User_Id`)
 );

@@ -1,5 +1,5 @@
 {
-  "id": "4d4b2ea7-c462-414d-ab9f-48775d3a005b",
+  "id": "9e595ef4-31fc-4d65-b57d-ceebf46a06c8",
   "prevId": null,
   "dialect": "mysql",
   "tables": [
@@ -8,7 +8,7 @@
       "columns": [
         {
           "columnName": "book_id",
-          "type": "int",
+          "type": "varchar(255)",
           "nullable": false
         },
         {
@@ -48,8 +48,13 @@
       "tableName": "User",
       "columns": [
         {
+          "columnName": "User_Id",
+          "type": "int",
+          "nullable": false
+        },
+        {
           "columnName": "Id",
-          "type": "varchar(255)",
+          "type": "int",
           "nullable": false
         },
         {
@@ -59,7 +64,7 @@
         },
         {
           "columnName": "Age",
-          "type": "int",
+          "type": "varchar(255)",
           "nullable": false
         },
         {
@@ -68,7 +73,7 @@
           "nullable": false
         }
       ],
-      "primaryKey": "Id"
+      "primaryKey": "User_Id"
     }
   ]
 }

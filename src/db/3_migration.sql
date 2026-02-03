@@ -1,9 +1,1 @@
-CREATE TABLE `User` (
-    `Id` varchar(255) NOT NULL,
-    `Username` varchar(255) NOT NULL,
-    `Age` int NOT NULL,
-    `IsAdmin` boolean NOT NULL,
-    PRIMARY KEY (`Id`)
-);
-
-DROP TABLE `Users`;
+ALTER TABLE `User` ADD COLUMN `User_Id` varchar(255) NOT NULL;ALTER TABLE `User` DROP PRIMARY KEY, ADD PRIMARY KEY (`User_Id`);

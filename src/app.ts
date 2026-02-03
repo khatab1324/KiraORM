@@ -1,41 +1,18 @@
 import Kira from "./connection.js";
-import {
-  PrimaryColumn,
-  PrimaryKeyRegistry,
-} from "./decorators/PrimaryColumn.js";
-import { Table } from "./decorators/Table.js";
+import { Books } from "./schema/book.js";
+import { User } from "./schema/user.js";
 
-@Table("User")
-class User {
-  static readonly name = "User";
-  @PrimaryColumn()
-  Id: string;
-  Username!: string;
-  Age!: number;
+const db = Kira("mysql://root:112233@localhost/firstDatabase", [User, Books]);
+
+let user = await db.user.findWhere({ Username: "khattab" });
+if (!user) {
+  await db.user.insert({
+    Id: 1,
+    Username: "khattab",
+    Age: "21",
+    IsAdmin: true,
+  });
 }
-@Table("cat")
-class Cat {
-  static readonly name = "Cat";
-  // @PrimaryColumn()
-  cat_id!: number;
-  name!: string;
-  age!: number;
-}
-@Table("books")
-class Book {
-  static readonly name = "Book";
-  @PrimaryColumn()
-  book_id!: number;
-  title!: string;
-  author_fname!: string;
-  author_lname!: string;
-  released_year!: number;
-  stock_quantity!: number;
-  pages: number;
-}
-const db = Kira("mysql://root:112233@localhost/databaseOne", [User, Cat, Book]);
-// const users = await db.user.find();
-const user = await db.user.findWhere({ Username: "khattab" });
+user = await db.user.findWhere({ Username: "khattab" });
 console.log(user);
-
 db.close();

@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate": "node --loader ts-node/esm src/kira_kit/cli/commands/kira_commands.ts generate",
-    "migrate": "node --loader ts-node/esm src/kira_kit/cli/commands/kira_commands.ts migrate"
+    "migrate": "node --loader ts-node/esm src/kira_kit/cli/commands/kira_commands.ts migrate",
+    "start": "node --loader ts-node/esm src/app.ts"
   },
   "keywords": [],
   "author": "",

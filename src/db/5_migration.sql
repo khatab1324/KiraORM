@@ -1,1 +1,0 @@
-ALTER TABLE `Users` MODIFY COLUMN `Id` varchar(255) NOT NULL;

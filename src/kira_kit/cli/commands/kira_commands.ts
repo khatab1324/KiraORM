@@ -12,7 +12,7 @@ if (!cmd || cmd === "--help" || cmd === "-h") {
   process.exit(0);
 }
 if (argv[0] === "generate") {
-  if (argv[1]) await runGenerate(argv.slice(1));
+  await runGenerate();
 } else if (argv[0] === "migrate") {
   await runMigrate();
 }

@@ -1,1 +1,0 @@
-CREATE TABLE `User` (  `User_Id` int NOT NULL,  `Id` int NOT NULL,  `Username` varchar(255) NOT NULL,  `Age` varchar(255) NOT NULL,  `IsAdmin` boolean NOT NULL,  PRIMARY KEY (`User_Id`));DROP TABLE `Users`;

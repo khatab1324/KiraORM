@@ -1,5 +1,0 @@
-ALTER TABLE `Books` MODIFY COLUMN `book_id` varchar(255) NOT NULL;
-
-ALTER TABLE `Users` MODIFY COLUMN `Id` int NOT NULL;
-
-ALTER TABLE `Users` MODIFY COLUMN `Age` varchar(255) NOT NULL;
